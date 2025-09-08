@@ -57,6 +57,17 @@ def restart():
     Resets the ball and player scores to the initial state.
     """
     global ball_speed_x, ball_speed_y, score
+
+    # Show and play game over sound
+    game_over_sound = pygame.mixer.Sound('Sounds/game_over_sound.wav')
+    game_over_sound.play()
+
+    font = pygame.font.SysFont('freesansbold', 48)
+    game_over_text = font.render("GAME OVER", True, pygame.Color('red'))
+    screen.blit(game_over_text, (screen_width/2-120, screen_height/2-50))
+    pygame.display.flip()
+    pygame.time.delay(1500)
+
     ball.center = (screen_width / 2, screen_height / 2)  # Reset ball position to center
     ball_speed_y, ball_speed_x = 0, 0  # Stop ball movement
     score = 0  # Reset player score
